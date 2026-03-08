@@ -5,11 +5,12 @@ import ProjectOverview from '../components/ProjectOverview'
 import RecentActivity from '../components/RecentActivity'
 import TaskSummary from '../components/TaskSummary'
 import { Plus } from 'lucide-react'
+import { userUser } from "@clerk/clerk-react"
 
 
 const Dashboard = () => {
 
-  const user = { fullName: 'User' }
+  const { user } = userUser()
   const [isDialogOpen, setIsDialogOpen] = useState(false)
 
   return (
@@ -20,14 +21,14 @@ const Dashboard = () => {
           <h1 className='text-xl sm:text-2xl font-semibold text-gray-900 dark:text-white mb-1'>
             Welcome back, {user?.fullName || 'User' }
           </h1>
-          <p className='text-gary-500 dark:text-zinc-400 text-sm '> Voilà ce qui se passe avec tes projets aujourd'hui</p>
+          <p className='text-gary-500 dark:text-zinc-400 text-sm '> Here's what's happening with your projects today</p>
         </div>
 
         <button
           onClick={() => setIsDialogOpen(true)}
           className='flex items-center gap-2 px-5 py-2 text-sm rounded bg-gradient-to-br from-blue-500 to-blue-600 text-white space-x-2 hover:opacity-90 trasition'
         >
-          <Plus size={16} /> Nouveau Projet
+          <Plus size={16} /> New Project
         </button>
 
         <CreateProjectDialog isDialogOpen={isDialogOpen} setIsDialogOpen={setIsDialogOpen} />
